@@ -1,0 +1,64 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion '26.0.1'
+    defaultConfig {
+        applicationId "com.example.riskteria.kotlinlistanko"
+        minSdkVersion 19
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    // App File tree
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // App Dependencies
+    implementation "com.android.support:design:$support_library_version"
+    implementation "com.android.support:appcompat-v7:$support_library_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation "com.google.dagger:dagger-android:$dagger_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger_version"
+
+    implementation "io.reactivex.rxjava2:rxkotlin:$rxkotlin_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+
+    // Anko Commons
+    implementation "org.jetbrains.anko:anko:$anko_version"
+    // sdk15, sdk19, sdk21, sdk23 are also available
+    implementation "org.jetbrains.anko:anko-appcompat-v7:$anko_version"
+    implementation "org.jetbrains.anko:anko-coroutines:$anko_version"
+    // Design
+    implementation "org.jetbrains.anko:anko-design:$anko_version"
+    implementation "org.jetbrains.anko:anko-design-coroutines:$anko_version"
+
+    // Networking
+    implementation "com.github.kittinunf.fuel:fuel:$fuel_version"
+    implementation "com.github.kittinunf.fuel:fuel-gson:$fuel_version"
+    implementation "com.github.kittinunf.fuel:fuel-rxjava:$fuel_version"
+    implementation "com.github.kittinunf.fuel:fuel-android:$fuel_version"
+
+    annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
+
+    // Dependencies for local unit tests
+    testImplementation "junit:junit:$junit_version"
+
+    // Espresso UI Testing
+    androidTestImplementation("com.android.support.test.espresso:espresso-core:$espresso_version", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+}
