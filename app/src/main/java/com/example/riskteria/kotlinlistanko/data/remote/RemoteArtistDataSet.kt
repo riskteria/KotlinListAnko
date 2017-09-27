@@ -1,7 +1,7 @@
 package com.example.riskteria.kotlinlistanko.data.remote
 
 import com.example.riskteria.kotlinlistanko.AppConfig
-import com.example.riskteria.kotlinlistanko.data.musixmatch.BaseRouting
+import com.example.riskteria.kotlinlistanko.data.lastfm.BaseRouting
 import com.github.kittinunf.fuel.core.Method
 
 /**
@@ -11,12 +11,11 @@ import com.github.kittinunf.fuel.core.Method
 sealed class RemoteArtistDataSet : BaseRouting() {
 
     class RequestChartArtist(
-            val country: String? = null,
             val page: Int? = null,
-            val pageSize: Int? = null): RemoteArtistDataSet()
+            val limit: Int? = null): RemoteArtistDataSet()
 
     class RequestArtistInfo(
-            val artistId: Int): RemoteArtistDataSet()
+            val artist: Int): RemoteArtistDataSet()
 
     override val method: Method
         get() {
@@ -30,14 +29,17 @@ sealed class RemoteArtistDataSet : BaseRouting() {
         get() {
             return when(this) {
                 is RequestChartArtist -> listOf(
-                        "country" to this.country,
+                        "method" to "chart.gettopartists",
                         "page" to this.page,
-                        "page_size" to this.pageSize,
-                        "apikey" to AppConfig.MUSIXMATCH_API_KEY
+                        "limit" to this.limit,
+                        "api_key" to AppConfig.LASTFM_API_KEY,
+                        "format" to "json"
                 )
                 is RequestArtistInfo -> listOf(
-                        "artist_id" to this.artistId,
-                        "apikey" to AppConfig.MUSIXMATCH_API_KEY
+                        "method" to "artist.getinfo",
+                        "artist" to this.artist,
+                        "api_key" to AppConfig.LASTFM_API_KEY,
+                        "format" to "json"
                 )
             }
         }
@@ -45,8 +47,8 @@ sealed class RemoteArtistDataSet : BaseRouting() {
     override val path: String
         get() {
             return when(this) {
-                is RequestChartArtist -> "chart.artists.get"
-                is RequestArtistInfo -> "artist.get"
+                is RequestChartArtist -> "2.0"
+                is RequestArtistInfo -> "2.0"
             }
         }
 

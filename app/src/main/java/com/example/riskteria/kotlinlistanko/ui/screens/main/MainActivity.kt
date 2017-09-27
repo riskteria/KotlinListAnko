@@ -44,7 +44,7 @@ class MainActivity : BaseActivity<MainLayout>(), MainView {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { artists ->
                     for(artist in artists) {
-                        Log.d("**** Data ****", artist.artist.primaryGenres.musicGenreList.size.toString())
+                        Log.d("**** Data ****", artist.toString())
                     }
                 }
     }

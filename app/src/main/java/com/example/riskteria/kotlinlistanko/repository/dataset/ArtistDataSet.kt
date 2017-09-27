@@ -1,6 +1,6 @@
 package com.example.riskteria.kotlinlistanko.repository.dataset
 
-import com.example.riskteria.kotlinlistanko.data.musixmatch.model.MusixMatchArtist
+import com.example.riskteria.kotlinlistanko.data.lastfm.model.LastFmArtist
 import io.reactivex.Single
 
 /**
@@ -9,7 +9,7 @@ import io.reactivex.Single
 
 interface ArtistDataSet {
 
-    fun getChartArtists(): Single<MutableList<MusixMatchArtist>>
-    fun getArtist(id: Int): Single<MusixMatchArtist>
+    fun getChartArtists(): Single<MutableList<LastFmArtist>>
+    fun getArtist(id: Int): Single<LastFmArtist>
 
 }
