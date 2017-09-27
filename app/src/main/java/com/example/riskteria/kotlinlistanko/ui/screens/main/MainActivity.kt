@@ -39,7 +39,7 @@ class MainActivity : BaseActivity<MainLayout>(), MainView {
     private fun loadFirstData() {
         val repository = ArtistRepository()
 
-        repository.getChartArtists()
+        repository.getTopArtists()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { artists ->

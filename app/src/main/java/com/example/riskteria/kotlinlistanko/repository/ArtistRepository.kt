@@ -2,7 +2,7 @@ package com.example.riskteria.kotlinlistanko.repository
 
 import com.example.riskteria.kotlinlistanko.data.lastfm.deserializer.ArtistDeserializer
 import com.example.riskteria.kotlinlistanko.data.lastfm.model.LastFmArtist
-import com.example.riskteria.kotlinlistanko.data.remote.RemoteArtistDataSet
+import com.example.riskteria.kotlinlistanko.data.routing.ArtistRouting
 import com.example.riskteria.kotlinlistanko.repository.dataset.ArtistDataSet
 import com.example.riskteria.kotlinlistanko.util.log
 import com.github.kittinunf.fuel.Fuel
@@ -15,17 +15,17 @@ import io.reactivex.Single
  */
 class ArtistRepository : ArtistDataSet {
 
-    override fun getArtist(id: Int): Single<LastFmArtist> {
+    override fun getArtistInfo(id: Int): Single<LastFmArtist> {
         return Fuel.Companion
-                .request(RemoteArtistDataSet.RequestArtistInfo(id))
+                .request(ArtistRouting.RequestArtistRemoteInfo(id))
                 .log()
                 .rx_object(ArtistDeserializer.Deserializer())
                 .map { it.component1() ?: throw it.component2() ?: throw Exception() }
     }
 
-    override fun getChartArtists(): Single<MutableList<LastFmArtist>> {
+    override fun getTopArtists(): Single<MutableList<LastFmArtist>> {
         return Fuel.Companion
-                .request(RemoteArtistDataSet.RequestChartArtist())
+                .request(ArtistRouting.RequestChartArtistRemote())
                 .log()
                 .rx_object(ArtistDeserializer.ListDeserializer())
                 .map { it.component1() ?: throw it.component2() ?: throw Exception() }

@@ -1,5 +1,6 @@
 package com.example.riskteria.kotlinlistanko.ui.screens.main
 
+import android.graphics.drawable.ColorDrawable
 import android.support.v7.widget.Toolbar
 import android.widget.LinearLayout
 import com.example.riskteria.kotlinlistanko.R
@@ -7,6 +8,7 @@ import com.example.riskteria.kotlinlistanko.ui.activity.ActivityAnkoComponent
 import org.jetbrains.anko.*
 import org.jetbrains.anko.appcompat.v7.themedToolbar
 import org.jetbrains.anko.design.appBarLayout
+import org.jetbrains.anko.design.collapsingToolbarLayout
 import org.jetbrains.anko.design.coordinatorLayout
 
 /**
@@ -21,10 +23,12 @@ class MainLayout : ActivityAnkoComponent<MainActivity> {
         coordinatorLayout {
 
             appBarLayout {
+
                 toolbar = themedToolbar(R.style.ThemeOverlay_AppCompat_Dark_ActionBar) {
                     backgroundResource = R.color.colorPrimary
-                }.lparams(width = matchParent)
-            }.lparams(width = matchParent)
+                }.lparams(width = matchParent, height = wrapContent)
+
+            }.lparams(width = matchParent, height = wrapContent)
 
             linearLayout {
                 orientation = LinearLayout.VERTICAL

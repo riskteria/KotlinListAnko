@@ -16,9 +16,3 @@ fun Request.log(): Request {
     }
     return this
 }
-
-fun String.getResultBody(): JsonObject {
-    return Gson().fromJson(this, JsonObject::class.java)
-            .getAsJsonObject("message")
-            .getAsJsonObject("body")
-}
