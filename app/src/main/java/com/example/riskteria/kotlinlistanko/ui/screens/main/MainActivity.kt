@@ -1,6 +1,7 @@
 package com.example.riskteria.kotlinlistanko.ui.screens.main
 
 import android.os.Bundle
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.widget.LinearLayout
@@ -12,6 +13,7 @@ import com.example.riskteria.kotlinlistanko.ui.view.MainView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
+import kotlin.properties.Delegates
 
 
 class MainActivity : BaseActivity<MainLayout>(), MainView {
@@ -25,13 +27,13 @@ class MainActivity : BaseActivity<MainLayout>(), MainView {
     private lateinit var adapter: ArtistAdapter
 
     @Inject
-    private lateinit var layoutManager: LinearLayoutManager
+    private lateinit var layoutManager: GridLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         adapter = ArtistAdapter()
-        layoutManager = LinearLayoutManager(this)
+        layoutManager = GridLayoutManager(this, 2)
 
         loadFirstData()
         initPresenter()

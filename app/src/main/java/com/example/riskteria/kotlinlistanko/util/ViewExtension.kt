@@ -1,6 +1,11 @@
 package com.example.riskteria.kotlinlistanko.util
 
+import android.support.annotation.StyleRes
 import android.support.design.widget.CollapsingToolbarLayout
+import android.support.v4.widget.TextViewCompat
+import android.widget.ImageView
+import android.widget.TextView
+import com.squareup.picasso.Picasso
 import org.jetbrains.anko.wrapContent
 
 /**
@@ -17,3 +22,10 @@ fun <T : android.view.View> T.lparamsC(width: kotlin.Int = wrapContent, height: 
     layoutParams = params
     return this
 }
+
+fun ImageView.loadUrl(url: String) {
+    Picasso.with(context).load(url).into(this)
+}
+
+fun TextView.setTextAppearanceC(@StyleRes textAppearance: Int)
+        = TextViewCompat.setTextAppearance(this, textAppearance)

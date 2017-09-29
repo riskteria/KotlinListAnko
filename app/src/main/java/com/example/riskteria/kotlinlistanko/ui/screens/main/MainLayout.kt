@@ -15,15 +15,12 @@ import com.example.riskteria.kotlinlistanko.R
 import com.example.riskteria.kotlinlistanko.ui.activity.ActivityAnkoComponent
 import com.example.riskteria.kotlinlistanko.ui.custom.squareImageView
 import com.example.riskteria.kotlinlistanko.util.lparamsC
-import org.jetbrains.anko.AnkoContext
+import org.jetbrains.anko.*
 import org.jetbrains.anko.appcompat.v7.toolbar
 import org.jetbrains.anko.design.collapsingToolbarLayout
 import org.jetbrains.anko.design.coordinatorLayout
 import org.jetbrains.anko.design.themedAppBarLayout
-import org.jetbrains.anko.dip
-import org.jetbrains.anko.matchParent
 import org.jetbrains.anko.recyclerview.v7.recyclerView
-import org.jetbrains.anko.wrapContent
 
 /**
  * Created by riskteria on 9/16/17.
@@ -70,6 +67,7 @@ class MainLayout : ActivityAnkoComponent<MainActivity> {
 
             artistList = recyclerView {
                 layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+                padding = dip(4)
             }.lparams(width = matchParent, height = matchParent) {
                 behavior = AppBarLayout.ScrollingViewBehavior()
             }
