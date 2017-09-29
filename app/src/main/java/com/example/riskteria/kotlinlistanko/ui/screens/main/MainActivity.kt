@@ -1,9 +1,12 @@
 package com.example.riskteria.kotlinlistanko.ui.screens.main
 
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import android.widget.LinearLayout
 import com.example.riskteria.kotlinlistanko.repository.ArtistRepository
 import com.example.riskteria.kotlinlistanko.ui.activity.BaseActivity
+import com.example.riskteria.kotlinlistanko.ui.adapter.ArtistAdapter
 import com.example.riskteria.kotlinlistanko.ui.presenter.MainPresenter
 import com.example.riskteria.kotlinlistanko.ui.view.MainView
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -18,10 +21,21 @@ class MainActivity : BaseActivity<MainLayout>(), MainView {
     @Inject
     private lateinit var presenter: MainPresenter
 
+    @Inject
+    private lateinit var adapter: ArtistAdapter
+
+    @Inject
+    private lateinit var layoutManager: LinearLayoutManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        adapter = ArtistAdapter()
+        layoutManager = LinearLayoutManager(this)
+
         loadFirstData()
         initPresenter()
+        setupArtistList()
     }
 
     override fun onAttach() {
@@ -36,6 +50,11 @@ class MainActivity : BaseActivity<MainLayout>(), MainView {
         //
     }
 
+    private fun setupArtistList() {
+        ui.artistList.adapter = adapter
+        ui.artistList.layoutManager = layoutManager
+    }
+
     private fun loadFirstData() {
         val repository = ArtistRepository()
 
@@ -43,9 +62,7 @@ class MainActivity : BaseActivity<MainLayout>(), MainView {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { artists ->
-                    for(artist in artists) {
-                        Log.d("**** Data ****", artist.toString())
-                    }
+                    adapter.items = artists
                 }
     }
 

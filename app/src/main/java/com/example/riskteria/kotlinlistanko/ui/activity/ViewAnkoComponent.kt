@@ -9,7 +9,7 @@ import org.jetbrains.anko.AnkoContext
  * Created by riskteria on 9/16/17.
  */
 
-interface ViewAnkoComponent<T: ViewGroup> : AnkoComponent<T> {
+interface ViewAnkoComponent<T : ViewGroup> : AnkoComponent<T> {
 
     val view: T
 
