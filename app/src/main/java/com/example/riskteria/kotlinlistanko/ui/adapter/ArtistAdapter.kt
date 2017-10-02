@@ -37,9 +37,7 @@ class ArtistAdapter : BaseAdapter<LastFmArtist, ArtistAdapter.Component>() {
             frameLayout {
 
                 linearLayout {
-                    lparams(width = matchParent, height = wrapContent) {
-                        margin = dip(4)
-                    }
+                    lparams(width = matchParent, height = wrapContent)
 
                     orientation = LinearLayout.VERTICAL
                     padding = dip(4)

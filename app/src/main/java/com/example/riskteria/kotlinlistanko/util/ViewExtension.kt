@@ -1,5 +1,6 @@
 package com.example.riskteria.kotlinlistanko.util
 
+import android.view.View
 import android.support.annotation.StyleRes
 import android.support.design.widget.CollapsingToolbarLayout
 import android.support.v4.widget.TextViewCompat
@@ -16,7 +17,7 @@ import org.jetbrains.anko.wrapContent
  * For some reason, the regular lparams is returning FrameLayout LayoutParams, instead of the ones
  * for CollapsingToolbarLayout. This fixes it.
  */
-fun <T : android.view.View> T.lparamsC(width: kotlin.Int = wrapContent, height: kotlin.Int = wrapContent, init: CollapsingToolbarLayout.LayoutParams.() -> kotlin.Unit = {}): T {
+fun <T : View> T.lparamsC(width: kotlin.Int = wrapContent, height: kotlin.Int = wrapContent, init: CollapsingToolbarLayout.LayoutParams.() -> kotlin.Unit = {}): T {
     val params = CollapsingToolbarLayout.LayoutParams(width, height)
     params.init()
     layoutParams = params

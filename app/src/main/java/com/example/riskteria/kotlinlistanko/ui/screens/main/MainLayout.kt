@@ -67,7 +67,7 @@ class MainLayout : ActivityAnkoComponent<MainActivity> {
 
             artistList = recyclerView {
                 layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-                padding = dip(4)
+                horizontalPadding = dip(4)
             }.lparams(width = matchParent, height = matchParent) {
                 behavior = AppBarLayout.ScrollingViewBehavior()
             }
