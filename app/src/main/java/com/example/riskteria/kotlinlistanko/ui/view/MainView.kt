@@ -5,9 +5,5 @@ package com.example.riskteria.kotlinlistanko.ui.view
  */
 
 interface MainView : PresentationView {
-
-    fun onAttach()
-
-    fun onDetach()
-
+    //
 }

@@ -19,4 +19,12 @@ abstract class BaseActivity<out UI : ActivityAnkoComponent<out AppCompatActivity
         setSupportActionBar(ui.toolbar)
     }
 
+    override fun onPause() {
+        super.onPause()
+    }
+
+    override fun onResume() {
+        super.onResume()
+    }
+
 }

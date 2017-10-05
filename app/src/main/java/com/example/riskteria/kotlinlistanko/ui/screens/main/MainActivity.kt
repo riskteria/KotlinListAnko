@@ -20,36 +20,34 @@ class MainActivity : BaseActivity<MainLayout>(), MainView {
 
     override val ui: MainLayout = MainLayout()
 
-    @Inject
     private lateinit var presenter: MainPresenter
-
-    @Inject
     private lateinit var adapter: ArtistAdapter
-
-    @Inject
     private lateinit var layoutManager: GridLayoutManager
+
+    // Repository
+    private lateinit var artistRepository: ArtistRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        presenter = MainPresenter(this as MainView)
         adapter = ArtistAdapter()
         layoutManager = GridLayoutManager(this, 2)
 
+        artistRepository = ArtistRepository()
+
         loadFirstData()
-        initPresenter()
         setupArtistList()
     }
 
-    override fun onAttach() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onResume() {
+        super.onResume()
+        presenter.onPause()
     }
 
-    override fun onDetach() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    private fun initPresenter() {
-        //
+    override fun onPause() {
+        super.onPause()
+        presenter.onResume()
     }
 
     private fun setupArtistList() {
@@ -58,21 +56,15 @@ class MainActivity : BaseActivity<MainLayout>(), MainView {
     }
 
     private fun loadFirstData() {
-        val repository = ArtistRepository()
+        loadArtistData()
+    }
 
-        repository.getTopArtists()
+    private fun loadArtistData() {
+        artistRepository.getTopArtists()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { artists ->
                     adapter.items = artists
                 }
-    }
-
-    override fun onResume() {
-        super.onResume()
-    }
-
-    override fun onPause() {
-        super.onPause()
     }
 }
