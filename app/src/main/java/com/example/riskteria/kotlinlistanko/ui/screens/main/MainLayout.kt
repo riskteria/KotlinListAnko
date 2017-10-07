@@ -6,11 +6,10 @@ import android.support.design.widget.CollapsingToolbarLayout.LayoutParams.COLLAP
 import android.support.design.widget.CollapsingToolbarLayout.LayoutParams.COLLAPSE_MODE_PIN
 import android.support.design.widget.AppBarLayout.LayoutParams.SCROLL_FLAG_EXIT_UNTIL_COLLAPSED
 import android.support.design.widget.AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.StaggeredGridLayoutManager
 import android.support.v7.widget.Toolbar
 import android.view.Gravity
 import android.widget.ImageView
+import android.widget.LinearLayout
 import com.example.riskteria.kotlinlistanko.R
 import com.example.riskteria.kotlinlistanko.ui.activity.ActivityAnkoComponent
 import com.example.riskteria.kotlinlistanko.ui.custom.squareImageView
@@ -20,7 +19,6 @@ import org.jetbrains.anko.appcompat.v7.toolbar
 import org.jetbrains.anko.design.collapsingToolbarLayout
 import org.jetbrains.anko.design.coordinatorLayout
 import org.jetbrains.anko.design.themedAppBarLayout
-import org.jetbrains.anko.recyclerview.v7.recyclerView
 
 /**
  * Created by riskteria on 9/16/17.
@@ -29,7 +27,6 @@ class MainLayout : ActivityAnkoComponent<MainActivity> {
 
     override lateinit var toolbar: Toolbar
 
-    lateinit var artistList: RecyclerView
     private lateinit var image: ImageView
     private lateinit var collapsingToolbarLayout: CollapsingToolbarLayout
 
@@ -65,9 +62,16 @@ class MainLayout : ActivityAnkoComponent<MainActivity> {
 
             }.lparams(width = matchParent, height = wrapContent)
 
-            artistList = recyclerView {
-                layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-                horizontalPadding = dip(4)
+            linearLayout {
+                orientation = LinearLayout.VERTICAL
+
+                frameLayout {
+                    lparams(width = matchParent, height = matchParent)
+                    id = R.id.popular_artists_container
+                }.lparams(width = matchParent, height = matchParent) {
+
+                }
+
             }.lparams(width = matchParent, height = matchParent) {
                 behavior = AppBarLayout.ScrollingViewBehavior()
             }

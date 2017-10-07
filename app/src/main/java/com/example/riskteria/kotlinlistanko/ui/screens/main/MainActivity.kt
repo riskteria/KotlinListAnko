@@ -1,43 +1,32 @@
 package com.example.riskteria.kotlinlistanko.ui.screens.main
 
 import android.os.Bundle
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
-import android.widget.LinearLayout
-import com.example.riskteria.kotlinlistanko.repository.ArtistRepository
+import android.support.v4.app.FragmentManager
+import android.support.v4.app.FragmentTransaction
+import com.example.riskteria.kotlinlistanko.R
 import com.example.riskteria.kotlinlistanko.ui.activity.BaseActivity
-import com.example.riskteria.kotlinlistanko.ui.adapter.ArtistAdapter
+import com.example.riskteria.kotlinlistanko.ui.fragment.PopularArtists.PopularArtistsFragmentContainer
+import com.example.riskteria.kotlinlistanko.ui.presenter.ArtistsPresenter
 import com.example.riskteria.kotlinlistanko.ui.presenter.MainPresenter
 import com.example.riskteria.kotlinlistanko.ui.view.MainView
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
-import javax.inject.Inject
-import kotlin.properties.Delegates
 
 
-class MainActivity : BaseActivity<MainLayout>(), MainView {
+class MainActivity : BaseActivity<MainLayout>(), MainView, PopularArtistsFragmentContainer {
 
     override val ui: MainLayout = MainLayout()
 
     private lateinit var presenter: MainPresenter
-    private lateinit var adapter: ArtistAdapter
-    private lateinit var layoutManager: GridLayoutManager
 
-    // Repository
-    private lateinit var artistRepository: ArtistRepository
+    private lateinit var popularArtistsFragment: PopularArtistsFragment
+
+    private lateinit var fragmentManager: FragmentManager
+    private lateinit var fragmentTransaction: FragmentTransaction
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        presenter = MainPresenter(this as MainView)
-        adapter = ArtistAdapter()
-        layoutManager = GridLayoutManager(this, 2)
-
-        artistRepository = ArtistRepository()
-
-        loadFirstData()
-        setupArtistList()
+        initPresenter()
+        initFragment()
     }
 
     override fun onResume() {
@@ -50,21 +39,20 @@ class MainActivity : BaseActivity<MainLayout>(), MainView {
         presenter.onResume()
     }
 
-    private fun setupArtistList() {
-        ui.artistList.adapter = adapter
-        ui.artistList.layoutManager = layoutManager
+    override fun getArtistsPresenter(): ArtistsPresenter {
+        return presenter
     }
 
-    private fun loadFirstData() {
-        loadArtistData()
+    private fun initPresenter() {
+        presenter = MainPresenter(this as MainView)
     }
 
-    private fun loadArtistData() {
-        artistRepository.getTopArtists()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { artists ->
-                    adapter.items = artists
-                }
+    private fun initFragment() {
+        popularArtistsFragment = PopularArtistsFragment()
+
+        fragmentManager = supportFragmentManager
+        fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.add(R.id.popular_artists_container, popularArtistsFragment, "Popular Artist Fragment")
+        fragmentTransaction.commit()
     }
 }
