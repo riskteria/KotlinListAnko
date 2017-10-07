@@ -23,13 +23,15 @@ class PopularArtistsFragment : Fragment() {
     private lateinit var repository: ArtistRepository
     private lateinit var layoutManager: GridLayoutManager
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        ui = container?.let { PopularArtistsLayout(container) }
-
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         initRepository()
         initAdapter()
-        loadFirstData()
+        loadArtistData()
+    }
 
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        ui = container?.let { PopularArtistsLayout(container) }
         return ui?.inflate()
     }
 
@@ -46,7 +48,7 @@ class PopularArtistsFragment : Fragment() {
         adapter = ArtistAdapter()
     }
 
-    private fun loadFirstData() {
+    private fun loadArtistData() {
         repository.getTopArtists()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
