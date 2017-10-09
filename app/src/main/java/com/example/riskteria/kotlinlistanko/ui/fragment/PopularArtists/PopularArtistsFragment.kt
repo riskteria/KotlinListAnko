@@ -1,14 +1,13 @@
-package com.example.riskteria.kotlinlistanko.ui.screens.main
+package com.example.riskteria.kotlinlistanko.ui.fragment.PopularArtists
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.riskteria.kotlinlistanko.repository.ArtistRepository
-import com.example.riskteria.kotlinlistanko.ui.adapter.ArtistAdapter
+import com.example.riskteria.kotlinlistanko.ui.adapter.ArtistsAdapter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -19,7 +18,7 @@ class PopularArtistsFragment : Fragment() {
 
     private var ui: PopularArtistsLayout? = null
 
-    private lateinit var adapter: ArtistAdapter
+    private lateinit var adapter: ArtistsAdapter
     private lateinit var repository: ArtistRepository
     private lateinit var layoutManager: GridLayoutManager
 
@@ -45,11 +44,11 @@ class PopularArtistsFragment : Fragment() {
     }
 
     private fun initAdapter() {
-        adapter = ArtistAdapter()
+        adapter = ArtistsAdapter()
     }
 
     private fun loadArtistData() {
-        repository.getTopArtists()
+        repository.getTopArtists(1, 10)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { artists -> adapter.items = artists }

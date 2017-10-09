@@ -23,9 +23,9 @@ class ArtistRepository : ArtistDataSet {
                 .map { it.component1() ?: throw it.component2() ?: throw Exception() }
     }
 
-    override fun getTopArtists(): Single<MutableList<LastFmArtist>> {
+    override fun getTopArtists(page: Int?, limit: Int?): Single<MutableList<LastFmArtist>> {
         return Fuel.Companion
-                .request(ArtistRouting.RequestChartArtistRemote())
+                .request(ArtistRouting.RequestChartArtistRemote(page, limit))
                 .log()
                 .rx_object(ArtistDeserializer.ListDeserializer())
                 .map { it.component1() ?: throw it.component2() ?: throw Exception() }

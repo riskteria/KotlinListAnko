@@ -9,7 +9,7 @@ import io.reactivex.Single
 
 interface ArtistDataSet {
 
-    fun getTopArtists(): Single<MutableList<LastFmArtist>>
+    fun getTopArtists(page: Int?, limit: Int?): Single<MutableList<LastFmArtist>>
     fun getArtistInfo(id: Int): Single<LastFmArtist>
 
 }

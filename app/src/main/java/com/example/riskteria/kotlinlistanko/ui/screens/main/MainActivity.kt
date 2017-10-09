@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
 import com.example.riskteria.kotlinlistanko.R
 import com.example.riskteria.kotlinlistanko.ui.activity.BaseActivity
+import com.example.riskteria.kotlinlistanko.ui.fragment.PopularArtists.PopularArtistsFragment
 import com.example.riskteria.kotlinlistanko.ui.fragment.PopularArtists.PopularArtistsFragmentContainer
 import com.example.riskteria.kotlinlistanko.ui.presenter.ArtistsPresenter
 import com.example.riskteria.kotlinlistanko.ui.presenter.MainPresenter

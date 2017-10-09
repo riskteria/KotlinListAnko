@@ -10,13 +10,13 @@ import com.example.riskteria.kotlinlistanko.data.lastfm.model.LastFmArtist
 import com.example.riskteria.kotlinlistanko.ui.activity.ViewAnkoComponent
 import com.example.riskteria.kotlinlistanko.ui.custom.squareImageView
 import com.example.riskteria.kotlinlistanko.util.loadUrl
-import com.example.riskteria.kotlinlistanko.util.setTextAppearanceC
 import org.jetbrains.anko.*
+import org.jetbrains.anko.cardview.v7.cardView
 
 /**
  * Created by riskteria on 9/28/17.
  */
-class ArtistAdapter : BaseAdapter<LastFmArtist, ArtistAdapter.Component>() {
+class ArtistsAdapter : BaseAdapter<LastFmArtist, ArtistsAdapter.Component>() {
 
     override val bind: Component.(item: LastFmArtist) -> Unit = { item ->
         name.text = item.name
@@ -34,34 +34,35 @@ class ArtistAdapter : BaseAdapter<LastFmArtist, ArtistAdapter.Component>() {
 
         override fun createView(ui: AnkoContext<RecyclerView>) = with(ui) {
 
-            frameLayout {
+            linearLayout {
+                lparams(width = matchParent, height = wrapContent)
 
-                linearLayout {
-                    lparams(width = matchParent, height = wrapContent)
+                orientation = LinearLayout.VERTICAL
+                padding = dip(4)
+                backgroundResource = R.color.colorSmoke
 
-                    orientation = LinearLayout.VERTICAL
-                    padding = dip(4)
-                    backgroundResource = R.color.colorSmoke
+                cardView {
+                    radius = 40f
 
                     image = squareImageView {
                         scaleType = ImageView.ScaleType.CENTER_CROP
                         backgroundResource = R.color.colorAccent
-                    }.lparams(width = matchParent)
-
-                    name = textView {
-                        horizontalPadding = dip(0)
-                        verticalPadding = dip(8)
-                        backgroundResource = R.color.colorSmoke
-                        maxLines = 1
-                        ellipsize = TextUtils.TruncateAt.END
-                    }.lparams(width = matchParent, height = wrapContent)
-
-                }.applyRecursively { view ->
-                    when (view) {
-                        is TextView -> view.textSize = 16f
                     }
-                }
 
+                }.lparams(width = matchParent)
+
+                name = textView {
+                    horizontalPadding = dip(0)
+                    verticalPadding = dip(8)
+                    backgroundResource = R.color.colorSmoke
+                    maxLines = 1
+                    ellipsize = TextUtils.TruncateAt.END
+                }.lparams(width = matchParent, height = wrapContent)
+
+            }.applyRecursively { view ->
+                when (view) {
+                    is TextView -> view.textSize = 16f
+                }
             }
 
         }

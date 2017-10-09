@@ -1,4 +1,4 @@
-package com.example.riskteria.kotlinlistanko.ui.screens.main
+package com.example.riskteria.kotlinlistanko.ui.fragment.PopularArtists
 
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
@@ -16,16 +16,11 @@ import org.jetbrains.anko.recyclerview.v7.recyclerView
 class PopularArtistsLayout(override val view: ViewGroup) : ViewAnkoComponent<ViewGroup> {
 
     var artistList: RecyclerView? = null
-    var tes: TextView? = null
 
     override fun createView(ui: AnkoContext<ViewGroup>): View = with(ui) {
         linearLayout {
             lparams(width = matchParent, height = matchParent)
             orientation = LinearLayout.VERTICAL
-
-            tes = textView {
-
-            }.lparams(width = matchParent, height = wrapContent)
 
             artistList = recyclerView {
                 layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
