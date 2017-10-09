@@ -35,7 +35,7 @@ class ArtistsAdapter : BaseAdapter<LastFmArtist, ArtistsAdapter.Component>() {
         override fun createView(ui: AnkoContext<RecyclerView>) = with(ui) {
 
             linearLayout {
-                lparams(width = matchParent, height = wrapContent)
+                lparams(width = wrapContent, height = wrapContent)
 
                 orientation = LinearLayout.VERTICAL
                 padding = dip(4)
@@ -57,11 +57,12 @@ class ArtistsAdapter : BaseAdapter<LastFmArtist, ArtistsAdapter.Component>() {
                     backgroundResource = R.color.colorSmoke
                     maxLines = 1
                     ellipsize = TextUtils.TruncateAt.END
+                    textAlignment = TextView.TEXT_ALIGNMENT_CENTER
                 }.lparams(width = matchParent, height = wrapContent)
 
             }.applyRecursively { view ->
                 when (view) {
-                    is TextView -> view.textSize = 16f
+                    is TextView -> view.textSize = 14f
                 }
             }
 

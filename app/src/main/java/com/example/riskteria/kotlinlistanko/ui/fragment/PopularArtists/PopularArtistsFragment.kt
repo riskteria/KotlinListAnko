@@ -3,9 +3,12 @@ package com.example.riskteria.kotlinlistanko.ui.fragment.PopularArtists
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import com.example.riskteria.kotlinlistanko.repository.ArtistRepository
 import com.example.riskteria.kotlinlistanko.ui.adapter.ArtistsAdapter
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -20,7 +23,7 @@ class PopularArtistsFragment : Fragment() {
 
     private lateinit var adapter: ArtistsAdapter
     private lateinit var repository: ArtistRepository
-    private lateinit var layoutManager: GridLayoutManager
+    private lateinit var layoutManager: RecyclerView.LayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +62,7 @@ class PopularArtistsFragment : Fragment() {
     }
 
     private fun initLayoutManager() {
-        layoutManager = GridLayoutManager(this.context, 2)
+        layoutManager = LinearLayoutManager(this.context, LinearLayout.HORIZONTAL, false)
         ui?.artistList?.layoutManager = layoutManager
     }
 
