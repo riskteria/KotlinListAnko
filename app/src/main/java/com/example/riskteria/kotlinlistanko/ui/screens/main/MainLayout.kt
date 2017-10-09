@@ -66,10 +66,13 @@ class MainLayout : ActivityAnkoComponent<MainActivity> {
                 orientation = LinearLayout.VERTICAL
 
                 frameLayout {
-                    lparams(width = matchParent, height = matchParent)
+                    lparams(width = matchParent, height = wrapContent)
                     id = R.id.popular_artists_container
-                }.lparams(width = matchParent, height = matchParent) {
+                }
 
+                frameLayout {
+                    lparams(width = matchParent, height = wrapContent)
+                    id = R.id.popular_tracks_container
                 }
 
             }.lparams(width = matchParent, height = matchParent) {

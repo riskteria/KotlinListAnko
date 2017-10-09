@@ -1,4 +1,4 @@
-package com.example.riskteria.kotlinlistanko.ui.fragment.PopularArtists
+package com.example.riskteria.kotlinlistanko.ui.fragment.PopularTracks
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
@@ -8,21 +8,20 @@ import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 
 /**
- * Created by riskteria on 10/7/17.
+ * Created by riskteria on 10/9/17.
  */
-class PopularArtistsLayout(override val view: ViewGroup) : ViewAnkoComponent<ViewGroup> {
+class PopularTracksLayout(override val view: ViewGroup) : ViewAnkoComponent<ViewGroup> {
 
-    lateinit var artistList: RecyclerView
+    lateinit var trackList: RecyclerView
 
     override fun createView(ui: AnkoContext<ViewGroup>): View = with(ui) {
         frameLayout {
             lparams(width = matchParent, height = wrapContent)
 
-            artistList = recyclerView {
+            trackList = recyclerView {
                 padding = dip(4)
                 clipToPadding = false
             }.lparams(width = matchParent, height = matchParent)
-
         }
     }
 
