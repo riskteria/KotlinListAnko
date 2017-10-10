@@ -31,18 +31,7 @@ class MainActivity : BaseActivity<MainLayout>(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        initPresenter()
         initFragment()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        presenter.onPause()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        presenter.onResume()
     }
 
     override fun getArtistsPresenter(): ArtistsPresenter {
@@ -53,8 +42,23 @@ class MainActivity : BaseActivity<MainLayout>(),
         return presenter
     }
 
-    private fun initPresenter() {
-        presenter = MainPresenter(this as MainView)
+    override fun onResume() {
+        presenter = MainPresenter()
+        onAttach()
+        super.onResume()
+    }
+
+    override fun onDestroy() {
+        onDetach()
+        super.onDestroy()
+    }
+
+    override fun onAttach() {
+        presenter.onAttach(this)
+    }
+
+    override fun onDetach() {
+        presenter.onDetach()
     }
 
     private fun initFragment() {

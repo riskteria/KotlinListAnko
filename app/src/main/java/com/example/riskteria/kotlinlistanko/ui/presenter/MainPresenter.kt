@@ -8,16 +8,16 @@ import com.example.riskteria.kotlinlistanko.ui.view.MainView
  * Created by riskteria on 9/18/17.
  */
 
-open class MainPresenter(
-        override val view: MainView
-) : Presenter<MainView>, ArtistsPresenter, TracksPresenter {
+class MainPresenter : Presenter<MainView>, ArtistsPresenter, TracksPresenter {
 
-    override fun onResume() {
-        super.onResume()
+    private var view: MainView? = null
+
+    override fun onAttach(view: MainView) {
+        this.view = view
     }
 
-    override fun onPause() {
-        super.onPause()
+    override fun onDetach() {
+        this.view = null
     }
 
     override fun onArtistClicked(item: ArtistDataSet) {
