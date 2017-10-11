@@ -21,6 +21,7 @@ class PopularTracksLayout(override val view: ViewGroup) : ViewAnkoComponent<View
             trackList = recyclerView {
                 padding = dip(4)
                 clipToPadding = false
+                isNestedScrollingEnabled = false
             }.lparams(width = matchParent, height = matchParent)
         }
     }

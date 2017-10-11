@@ -54,7 +54,7 @@ class PopularTracksFragment : BaseFragment<PopularTracksLayout>() {
     }
 
     private fun loadTracksData() {
-        repository.getTopTracks(1, 10)
+        repository.getTopTracks(1, 20)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { tracks -> adapter.items = tracks }

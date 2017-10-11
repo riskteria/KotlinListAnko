@@ -19,6 +19,7 @@ import org.jetbrains.anko.appcompat.v7.toolbar
 import org.jetbrains.anko.design.collapsingToolbarLayout
 import org.jetbrains.anko.design.coordinatorLayout
 import org.jetbrains.anko.design.themedAppBarLayout
+import org.jetbrains.anko.support.v4.nestedScrollView
 
 /**
  * Created by riskteria on 9/16/17.
@@ -62,17 +63,22 @@ class MainLayout : ActivityAnkoComponent<MainActivity> {
 
             }.lparams(width = matchParent, height = wrapContent)
 
-            linearLayout {
-                orientation = LinearLayout.VERTICAL
+            nestedScrollView {
 
-                frameLayout {
+                linearLayout {
                     lparams(width = matchParent, height = wrapContent)
-                    id = R.id.popular_artists_container
-                }
+                    orientation = LinearLayout.VERTICAL
 
-                frameLayout {
-                    lparams(width = matchParent, height = wrapContent)
-                    id = R.id.popular_tracks_container
+                    frameLayout {
+                        lparams(width = matchParent, height = wrapContent)
+                        id = R.id.popular_artists_container
+                    }
+
+                    frameLayout {
+                        lparams(width = matchParent, height = wrapContent)
+                        id = R.id.popular_tracks_container
+                    }
+
                 }
 
             }.lparams(width = matchParent, height = matchParent) {
