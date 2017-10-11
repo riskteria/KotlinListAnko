@@ -5,6 +5,6 @@ package com.example.riskteria.kotlinlistanko
  */
 
 object AppConfig {
-    val LASTFM_API_KEY: String = "c5166caa30b6c56455f7e1dcc54eb83b"
-    val LASTFM_API_URL: String = "http://ws.audioscrobbler.com"
+    val LAST_FM_API_KEY: String = "c5166caa30b6c56455f7e1dcc54eb83b"
+    val LAST_FM_API_URL: String = "http://ws.audioscrobbler.com"
 }

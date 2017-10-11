@@ -5,10 +5,8 @@ import com.example.riskteria.kotlinlistanko.ui.view.PresentationView
 /**
  * Created by riskteria on 9/14/17.
  */
-interface Presenter<in T: PresentationView> {
+interface Presenter<out T: PresentationView> {
 
-    fun onAttach(view: T)
-
-    fun onDetach()
+    val view: T
 
 }

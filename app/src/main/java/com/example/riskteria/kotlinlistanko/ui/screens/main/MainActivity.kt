@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
 import com.example.riskteria.kotlinlistanko.R
+import com.example.riskteria.kotlinlistanko.di.ApplicationComponent
+import com.example.riskteria.kotlinlistanko.di.component.main.MainActivityModule
 import com.example.riskteria.kotlinlistanko.ui.activity.BaseActivity
 import com.example.riskteria.kotlinlistanko.ui.fragment.PopularArtists.PopularArtistsFragment
 import com.example.riskteria.kotlinlistanko.ui.fragment.PopularArtists.PopularArtistsFragmentContainer
@@ -13,6 +15,7 @@ import com.example.riskteria.kotlinlistanko.ui.presenter.ArtistsPresenter
 import com.example.riskteria.kotlinlistanko.ui.presenter.MainPresenter
 import com.example.riskteria.kotlinlistanko.ui.presenter.TracksPresenter
 import com.example.riskteria.kotlinlistanko.ui.view.MainView
+import javax.inject.Inject
 
 
 class MainActivity : BaseActivity<MainLayout>(),
@@ -20,55 +23,34 @@ class MainActivity : BaseActivity<MainLayout>(),
 
     override val ui: MainLayout = MainLayout()
 
-    private lateinit var presenter: MainPresenter
+    @Inject
+    lateinit var presenter: MainPresenter
 
-    private lateinit var popularArtistsFragment: PopularArtistsFragment
-    private lateinit var popularTracksFragment: PopularTracksFragment
+    @Inject
+    lateinit var popularArtistsFragment: PopularArtistsFragment
 
-    private lateinit var fragmentManager: FragmentManager
-    private lateinit var fragmentTransaction: FragmentTransaction
+    @Inject
+    lateinit var popularTracksFragment: PopularTracksFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         initFragment()
     }
 
-    override fun getArtistsPresenter(): ArtistsPresenter {
-        return presenter
+    override fun injectDependencies(applicationComponent: ApplicationComponent) {
+        applicationComponent
+                .inject(MainActivityModule(this))
+                .injectTo(this)
     }
 
-    override fun getTracksPresenter(): TracksPresenter {
-        return presenter
-    }
+    override fun getArtistsPresenter() = presenter
 
-    override fun onResume() {
-        presenter = MainPresenter()
-        onAttach()
-        super.onResume()
-    }
-
-    override fun onDestroy() {
-        onDetach()
-        super.onDestroy()
-    }
-
-    override fun onAttach() {
-        presenter.onAttach(this)
-    }
-
-    override fun onDetach() {
-        presenter.onDetach()
-    }
+    override fun getTracksPresenter() = presenter
 
     private fun initFragment() {
-        popularArtistsFragment = PopularArtistsFragment()
-        popularTracksFragment = PopularTracksFragment()
-
-        fragmentManager = supportFragmentManager
-        fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.add(R.id.popular_artists_container, popularArtistsFragment, "Popular Artists Fragment")
-        fragmentTransaction.add(R.id.popular_tracks_container, popularTracksFragment, "Popular Tracks Fragment")
-        fragmentTransaction.commit()
+        supportFragmentManager.beginTransaction()
+                .add(R.id.popular_artists_container, popularArtistsFragment, "Popular Artists Fragment")
+                .add(R.id.popular_tracks_container, popularTracksFragment, "Popular Tracks Fragment")
+                .commit()
     }
 }

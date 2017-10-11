@@ -1,7 +1,6 @@
 package com.example.riskteria.kotlinlistanko.data.routing
 
 import com.example.riskteria.kotlinlistanko.AppConfig
-import com.example.riskteria.kotlinlistanko.data.lastfm.BaseRouting
 import com.github.kittinunf.fuel.core.Method
 
 /**
@@ -33,7 +32,7 @@ sealed class TrackRouting : BaseRouting() {
                         "method" to "chart.gettoptracks",
                         "page" to this.page,
                         "limit" to this.limit,
-                        "api_key" to AppConfig.LASTFM_API_KEY,
+                        "api_key" to AppConfig.LAST_FM_API_KEY,
                         "format" to "json"
                 )
 
@@ -41,7 +40,7 @@ sealed class TrackRouting : BaseRouting() {
                         "method" to "track.getinfo",
                         "artist" to this.artist,
                         "track" to this.track,
-                        "api_key" to AppConfig.LASTFM_API_KEY,
+                        "api_key" to AppConfig.LAST_FM_API_KEY,
                         "format" to "json"
                 )
             }

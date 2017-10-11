@@ -6,7 +6,6 @@ package com.example.riskteria.kotlinlistanko.ui.view
 
 interface PresentationView {
 
-    fun onAttach()
-    fun onDetach()
+
 
 }

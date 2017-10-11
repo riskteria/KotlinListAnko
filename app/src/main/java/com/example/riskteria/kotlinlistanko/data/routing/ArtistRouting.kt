@@ -1,7 +1,6 @@
 package com.example.riskteria.kotlinlistanko.data.routing
 
 import com.example.riskteria.kotlinlistanko.AppConfig
-import com.example.riskteria.kotlinlistanko.data.lastfm.BaseRouting
 import com.github.kittinunf.fuel.core.Method
 
 /**
@@ -32,13 +31,13 @@ sealed class ArtistRouting : BaseRouting() {
                         "method" to "chart.gettopartists",
                         "page" to this.page,
                         "limit" to this.limit,
-                        "api_key" to AppConfig.LASTFM_API_KEY,
+                        "api_key" to AppConfig.LAST_FM_API_KEY,
                         "format" to "json"
                 )
                 is RequestArtistRemoteInfo -> listOf(
                         "method" to "artist.getinfo",
                         "artist" to this.artist,
-                        "api_key" to AppConfig.LASTFM_API_KEY,
+                        "api_key" to AppConfig.LAST_FM_API_KEY,
                         "format" to "json"
                 )
             }

@@ -1,4 +1,4 @@
-package com.example.riskteria.kotlinlistanko.data.lastfm
+package com.example.riskteria.kotlinlistanko.data.routing
 
 import com.example.riskteria.kotlinlistanko.AppConfig
 import com.github.kittinunf.fuel.util.FuelRouting
@@ -8,7 +8,7 @@ import com.github.kittinunf.fuel.util.FuelRouting
  */
 abstract class BaseRouting : FuelRouting {
 
-    override val basePath: String = AppConfig.LASTFM_API_URL
+    override val basePath: String = AppConfig.LAST_FM_API_URL
 
     override val headers: Map<String, String>? = mapOf(
             "Accept" to "application/json",

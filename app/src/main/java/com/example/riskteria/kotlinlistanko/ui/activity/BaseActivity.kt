@@ -2,6 +2,8 @@ package com.example.riskteria.kotlinlistanko.ui.activity
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.example.riskteria.kotlinlistanko.App
+import com.example.riskteria.kotlinlistanko.di.ApplicationComponent
 import org.jetbrains.anko.setContentView
 
 /**
@@ -15,16 +17,11 @@ abstract class BaseActivity<out UI : ActivityAnkoComponent<out AppCompatActivity
     @Suppress("UNCHECKED_CAST")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        injectDependencies(App.applicationComponent)
         (ui as ActivityAnkoComponent<AppCompatActivity>).setContentView(this)
         setSupportActionBar(ui.toolbar)
     }
 
-    override fun onPause() {
-        super.onPause()
-    }
-
-    override fun onResume() {
-        super.onResume()
-    }
+    abstract fun injectDependencies(applicationComponent: ApplicationComponent)
 
 }
