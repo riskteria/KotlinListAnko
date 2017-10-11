@@ -13,5 +13,5 @@ data class LastFmArtistStats(
 
         @SerializedName("playcount")
         @Expose
-        val playcount: Int
+        val playCount: Int
 )

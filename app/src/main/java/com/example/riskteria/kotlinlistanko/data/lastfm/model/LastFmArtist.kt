@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName
 data class LastFmArtist(
         @SerializedName("mbid")
         @Expose
-        val mbid: String? = null,
+        val mbId: String? = null,
 
         @SerializedName("name")
         @Expose
@@ -25,7 +25,7 @@ data class LastFmArtist(
 
         @SerializedName("playcount")
         @Expose
-        val playcount: Int? = null,
+        val playCount: Int? = null,
 
         @SerializedName("listeners")
         @Expose
@@ -35,7 +35,7 @@ data class LastFmArtist(
         @Expose
         val stats: LastFmArtistStats? = null,
 
-        @SerializedName("similiar")
+        @SerializedName("similar")
         @Expose
-        val similiar: LastFmArtistSimiliar? = null
+        val similar: LastFmArtistSimilar? = null
 )
