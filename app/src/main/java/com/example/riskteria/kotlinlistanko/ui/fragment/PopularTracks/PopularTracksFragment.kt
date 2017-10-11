@@ -1,32 +1,37 @@
 package com.example.riskteria.kotlinlistanko.ui.fragment.PopularTracks
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.riskteria.kotlinlistanko.di.ApplicationComponent
+import com.example.riskteria.kotlinlistanko.di.subcomponent.fragment.populartracks.PopularTracksFragmentModule
 import com.example.riskteria.kotlinlistanko.repository.TrackRepository
-import com.example.riskteria.kotlinlistanko.ui.adapter.TrackAdapter
+import com.example.riskteria.kotlinlistanko.ui.adapter.TracksAdapter
+import com.example.riskteria.kotlinlistanko.ui.fragment.BaseFragment
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
 /**
  * Created by riskteria on 10/9/17.
  */
-class PopularTracksFragment : Fragment() {
+class PopularTracksFragment : BaseFragment<PopularTracksLayout>() {
 
     private var ui: PopularTracksLayout? = null
 
-    private lateinit var adapter: TrackAdapter
-    private lateinit var repository: TrackRepository
-    private lateinit var layoutManager: RecyclerView.LayoutManager
+    @Inject
+    lateinit var adapter: TracksAdapter
+
+    @Inject
+    lateinit var repository: TrackRepository
+
+    @Inject
+    lateinit var layoutManager: RecyclerView.LayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initRepository()
-        initAdapter()
         loadTracksData()
     }
 
@@ -42,12 +47,10 @@ class PopularTracksFragment : Fragment() {
         initLayoutManager()
     }
 
-    private fun initRepository() {
-        repository = TrackRepository()
-    }
-
-    private fun initAdapter() {
-        adapter = TrackAdapter()
+    override fun injectDependencies(applicationComponent: ApplicationComponent) {
+        applicationComponent
+                .inject(PopularTracksFragmentModule(this))
+                .injectTo(this)
     }
 
     private fun loadTracksData() {
@@ -62,7 +65,6 @@ class PopularTracksFragment : Fragment() {
     }
 
     private fun initLayoutManager() {
-        layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
         ui?.trackList?.layoutManager = layoutManager
     }
 

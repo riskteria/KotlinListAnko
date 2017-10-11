@@ -1,6 +1,6 @@
-package com.example.riskteria.kotlinlistanko.di.component.main
+package com.example.riskteria.kotlinlistanko.di.subcomponent.activity.main
 
-import com.example.riskteria.kotlinlistanko.di.ActivityModule
+import com.example.riskteria.kotlinlistanko.di.module.ActivityModule
 import com.example.riskteria.kotlinlistanko.di.scope.ActivityScope
 import com.example.riskteria.kotlinlistanko.ui.fragment.PopularArtists.PopularArtistsFragment
 import com.example.riskteria.kotlinlistanko.ui.fragment.PopularTracks.PopularTracksFragment

@@ -12,7 +12,7 @@ import org.jetbrains.anko.*
 /**
  * Created by riskteria on 10/9/17.
  */
-class TrackAdapter : BaseAdapter<LastFmTrack, TrackAdapter.Component>() {
+class TracksAdapter : BaseAdapter<LastFmTrack, TracksAdapter.Component>() {
 
     override val bind: Component.(item: LastFmTrack) -> Unit = { item ->
         name.text = item.name

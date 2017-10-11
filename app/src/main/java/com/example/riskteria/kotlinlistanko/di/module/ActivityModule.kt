@@ -1,4 +1,4 @@
-package com.example.riskteria.kotlinlistanko.di
+package com.example.riskteria.kotlinlistanko.di.module
 
 import android.content.Context
 import android.support.v7.app.AppCompatActivity

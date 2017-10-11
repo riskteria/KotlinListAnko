@@ -1,7 +1,8 @@
-package com.example.riskteria.kotlinlistanko.di
+package com.example.riskteria.kotlinlistanko.di.module
 
 import android.content.Context
 import com.example.riskteria.kotlinlistanko.App
+import com.example.riskteria.kotlinlistanko.di.ApplicationQualifier
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

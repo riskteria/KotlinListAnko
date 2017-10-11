@@ -1,4 +1,4 @@
-package com.example.riskteria.kotlinlistanko.di.component.main
+package com.example.riskteria.kotlinlistanko.di.subcomponent.activity.main
 
 import com.example.riskteria.kotlinlistanko.di.scope.ActivityScope
 import com.example.riskteria.kotlinlistanko.ui.screens.main.MainActivity

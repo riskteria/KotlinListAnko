@@ -3,7 +3,7 @@ package com.example.riskteria.kotlinlistanko.ui.screens.main
 import android.os.Bundle
 import com.example.riskteria.kotlinlistanko.R
 import com.example.riskteria.kotlinlistanko.di.ApplicationComponent
-import com.example.riskteria.kotlinlistanko.di.component.main.MainActivityModule
+import com.example.riskteria.kotlinlistanko.di.subcomponent.activity.main.MainActivityModule
 import com.example.riskteria.kotlinlistanko.ui.activity.BaseActivity
 import com.example.riskteria.kotlinlistanko.ui.fragment.PopularArtists.PopularArtistsFragment
 import com.example.riskteria.kotlinlistanko.ui.fragment.PopularArtists.PopularArtistsFragmentContainer

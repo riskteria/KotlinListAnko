@@ -49,7 +49,7 @@ class ArtistsAdapter : BaseAdapter<LastFmArtist, ArtistsAdapter.Component>() {
                         backgroundResource = R.color.colorAccent
                     }
 
-                }.lparams(width = matchParent)
+                }.lparams(width = matchParent, height = matchParent)
 
                 name = textView {
                     horizontalPadding = dip(0)

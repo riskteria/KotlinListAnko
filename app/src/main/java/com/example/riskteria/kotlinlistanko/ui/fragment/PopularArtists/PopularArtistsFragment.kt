@@ -1,33 +1,37 @@
 package com.example.riskteria.kotlinlistanko.ui.fragment.PopularArtists
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
+import com.example.riskteria.kotlinlistanko.di.ApplicationComponent
+import com.example.riskteria.kotlinlistanko.di.subcomponent.fragment.popularartists.PopularArtistsFragmentModule
 import com.example.riskteria.kotlinlistanko.repository.ArtistRepository
 import com.example.riskteria.kotlinlistanko.ui.adapter.ArtistsAdapter
+import com.example.riskteria.kotlinlistanko.ui.fragment.BaseFragment
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
 /**
  * Created by riskteria on 10/7/17.
  */
-class PopularArtistsFragment : Fragment() {
+class PopularArtistsFragment : BaseFragment<PopularArtistsLayout>() {
 
     private var ui: PopularArtistsLayout? = null
 
-    private lateinit var adapter: ArtistsAdapter
-    private lateinit var repository: ArtistRepository
-    private lateinit var layoutManager: RecyclerView.LayoutManager
+    @Inject
+    lateinit var adapter: ArtistsAdapter
+
+    @Inject
+    lateinit var repository: ArtistRepository
+
+    @Inject
+    lateinit var layoutManager: RecyclerView.LayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initRepository()
-        initAdapter()
         loadArtistsData()
     }
 
@@ -43,12 +47,10 @@ class PopularArtistsFragment : Fragment() {
         initLayoutManager()
     }
 
-    private fun initRepository() {
-        repository = ArtistRepository()
-    }
-
-    private fun initAdapter() {
-        adapter = ArtistsAdapter()
+    override fun injectDependencies(applicationComponent: ApplicationComponent) {
+        applicationComponent
+                .inject(PopularArtistsFragmentModule(this))
+                .injectTo(this)
     }
 
     private fun loadArtistsData() {
@@ -63,7 +65,6 @@ class PopularArtistsFragment : Fragment() {
     }
 
     private fun initLayoutManager() {
-        layoutManager = LinearLayoutManager(this.context, LinearLayout.HORIZONTAL, false)
         ui?.artistList?.layoutManager = layoutManager
     }
 
