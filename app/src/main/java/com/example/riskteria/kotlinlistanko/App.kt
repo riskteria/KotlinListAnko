@@ -2,7 +2,6 @@ package com.example.riskteria.kotlinlistanko
 
 import android.app.Application
 import com.example.riskteria.kotlinlistanko.di.ApplicationComponent
-import com.example.riskteria.kotlinlistanko.di.ApplicationModule
 import com.example.riskteria.kotlinlistanko.di.DaggerApplicationComponent
 
 /**
@@ -20,9 +19,7 @@ class App : Application() {
     }
 
     private fun initializeDagger() {
-        applicationComponent = DaggerApplicationComponent.builder()
-                .applicationModule(ApplicationModule(this))
-                .build()
+        applicationComponent = DaggerApplicationComponent.builder().build()
     }
 
 }
