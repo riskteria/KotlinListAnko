@@ -1,10 +1,6 @@
 package com.example.riskteria.kotlinlistanko.data.lastfm.model
 
-import com.github.kittinunf.fuel.core.ResponseDeserializable
-import com.google.gson.Gson
-import com.google.gson.JsonObject
 import com.google.gson.annotations.Expose
-import com.google.gson.reflect.TypeToken
 import com.google.gson.annotations.SerializedName
 
 /**

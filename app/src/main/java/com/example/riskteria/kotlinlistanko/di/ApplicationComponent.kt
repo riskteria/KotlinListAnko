@@ -1,6 +1,5 @@
 package com.example.riskteria.kotlinlistanko.di
 
-import com.example.riskteria.kotlinlistanko.App
 import com.example.riskteria.kotlinlistanko.di.component.main.MainActivityComponent
 import com.example.riskteria.kotlinlistanko.di.component.main.MainActivityModule
 import dagger.Component

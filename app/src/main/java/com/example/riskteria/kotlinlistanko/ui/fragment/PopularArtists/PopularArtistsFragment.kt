@@ -2,7 +2,6 @@ package com.example.riskteria.kotlinlistanko.ui.fragment.PopularArtists
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -10,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import com.example.riskteria.kotlinlistanko.repository.ArtistRepository
-import com.example.riskteria.kotlinlistanko.repository.TrackRepository
 import com.example.riskteria.kotlinlistanko.ui.adapter.ArtistsAdapter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

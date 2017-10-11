@@ -1,8 +1,6 @@
 package com.example.riskteria.kotlinlistanko.ui.screens.main
 
 import android.os.Bundle
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentTransaction
 import com.example.riskteria.kotlinlistanko.R
 import com.example.riskteria.kotlinlistanko.di.ApplicationComponent
 import com.example.riskteria.kotlinlistanko.di.component.main.MainActivityModule
@@ -11,9 +9,7 @@ import com.example.riskteria.kotlinlistanko.ui.fragment.PopularArtists.PopularAr
 import com.example.riskteria.kotlinlistanko.ui.fragment.PopularArtists.PopularArtistsFragmentContainer
 import com.example.riskteria.kotlinlistanko.ui.fragment.PopularTracks.PopularTracksFragment
 import com.example.riskteria.kotlinlistanko.ui.fragment.PopularTracks.PopularTracksFragmentContainer
-import com.example.riskteria.kotlinlistanko.ui.presenter.ArtistsPresenter
 import com.example.riskteria.kotlinlistanko.ui.presenter.MainPresenter
-import com.example.riskteria.kotlinlistanko.ui.presenter.TracksPresenter
 import com.example.riskteria.kotlinlistanko.ui.view.MainView
 import javax.inject.Inject
 
