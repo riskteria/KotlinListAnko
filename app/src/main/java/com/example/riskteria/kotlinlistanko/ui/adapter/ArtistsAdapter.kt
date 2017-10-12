@@ -20,7 +20,7 @@ class ArtistsAdapter : BaseAdapter<LastFmArtist, ArtistsAdapter.Component>() {
 
     override val bind: Component.(item: LastFmArtist) -> Unit = { item ->
         name.text = item.name
-        item.images.let { it ->
+        item.images?.let { it ->
             image.loadUrl(it[4].url)
         }
     }

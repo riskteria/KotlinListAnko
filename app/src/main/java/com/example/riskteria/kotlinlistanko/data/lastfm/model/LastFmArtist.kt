@@ -21,7 +21,7 @@ data class LastFmArtist(
 
         @SerializedName("image")
         @Expose
-        val images: MutableList<LastFmImage>,
+        val images: MutableList<LastFmImage>? = null,
 
         @SerializedName("playcount")
         @Expose
@@ -37,5 +37,9 @@ data class LastFmArtist(
 
         @SerializedName("similar")
         @Expose
-        val similar: LastFmArtistSimilar? = null
+        val similar: LastFmArtistSimilar? = null,
+
+        @SerializedName("bio")
+        @Expose
+        val bio: LastFmArtistBio? = null
 )

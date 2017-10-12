@@ -18,5 +18,9 @@ data class LastFmTrack (
 
     @SerializedName("url")
     @Expose
-    val url: String
+    val url: String,
+
+    @SerializedName("artist")
+    @Expose
+    val artist: LastFmArtist
 )
